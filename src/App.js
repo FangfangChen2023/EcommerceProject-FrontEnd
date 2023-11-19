@@ -2,6 +2,27 @@ import logo from './logo.svg';
 import './App.css';
 
 function App() {
+
+  const reqBody={
+    "username":"Amy",
+    "password":"abcdef",
+    "email":"Amy@gmail.com"
+  };
+
+  fetch("api/auth/authenticate",{
+    headers: {
+      "Content-Type":"application/json"
+    },
+    method:"post",
+    body: JSON.stringify(reqBody)
+  }).then((response) => {
+    const headers =response.headers;
+    console.log(headers);
+    return response.json();
+  })
+  .then(json=>console.log(json))
+  .catch(err=>console.log(err));
+
   return (
     <div className="App">
       <header className="App-header">
